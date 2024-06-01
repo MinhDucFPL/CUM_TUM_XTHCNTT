@@ -5,19 +5,33 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.kot104.cum_tum_xthcntt.Screen.AddCategoryScreen
 import com.kot104.cum_tum_xthcntt.Screen.BottomNavigation
+import com.kot104.cum_tum_xthcntt.Screen.DeleteCategoryScreen
+import com.kot104.cum_tum_xthcntt.Screen.EditCategoryScreen
 import com.kot104.cum_tum_xthcntt.Screen.HomeScreen
 import com.kot104.cum_tum_xthcntt.Screen.LoginScreen
+import com.kot104.cum_tum_xthcntt.Screen.ManageScreen
+import com.kot104.cum_tum_xthcntt.Screen.ManagerCategoriesScreen
+import com.kot104.cum_tum_xthcntt.Screen.ManagerDishScreen
 import com.kot104.cum_tum_xthcntt.Screen.StatisticalScreen
+import com.kot104.cum_tum_xthcntt.Screen.UpdateCategoryScreen
 import com.kot104.cum_tum_xthcntt.Screen.WelcomeScreen
 
 enum class ROUTE_SCREEN_NAME {
     WELCOME,
     LOGIN,
     HOME,
-    STATISTICAL,
     MANAGE,
-    SUPPORT
+    ManageCategories,
+    ManagerDish,
+    ADDCATEGORY,
+    EDITCATEGORY,
+    UPDATECATEGORY,
+    DELETECATEGORY,
+    ADDDISHES,
+    EDITDISHES,
+    DELETEDISHES
 }
 
 @Composable
@@ -39,6 +53,27 @@ fun AppNavHost(
         }
         composable(ROUTE_SCREEN_NAME.HOME.name) {
             BottomNavigation(navControl = navController)
+        }
+        composable(ROUTE_SCREEN_NAME.MANAGE.name) {
+            ManageScreen(navController = navController)
+        }
+        composable(ROUTE_SCREEN_NAME.ManageCategories.name) {
+            ManagerCategoriesScreen(navController = navController)
+        }
+        composable(ROUTE_SCREEN_NAME.ADDCATEGORY.name) {
+            AddCategoryScreen(navController = navController)
+        }
+        composable(ROUTE_SCREEN_NAME.EDITCATEGORY.name) {
+            EditCategoryScreen(navController = navController)
+        }
+        composable(ROUTE_SCREEN_NAME.DELETECATEGORY.name) {
+            DeleteCategoryScreen(navController = navController)
+        }
+        composable(ROUTE_SCREEN_NAME.UPDATECATEGORY.name) {
+            UpdateCategoryScreen(navController = navController)
+        }
+        composable(ROUTE_SCREEN_NAME.ManagerDish.name) {
+            ManagerDishScreen(navController = navController)
         }
     }
 }

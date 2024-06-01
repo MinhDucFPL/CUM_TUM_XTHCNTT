@@ -5,4 +5,5 @@ sealed class  Screens(val screen: String){
     data object Statistical : Screens("statistical")
     data object Manage : Screens("manage")
     data object Support : Screens("support")
+
 }

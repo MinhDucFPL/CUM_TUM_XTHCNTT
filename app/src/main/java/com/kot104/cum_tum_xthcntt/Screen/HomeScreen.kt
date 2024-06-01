@@ -70,8 +70,9 @@ fun HomeScreen(navController: NavHostController){
                 fontSize = 20.sp,
                 color = Color.White,
                 modifier = Modifier
+                    .fillMaxWidth()
                     .align(Alignment.CenterVertically)
-                )
+            )
             IconButton(
                 onClick = { }
             ) {
