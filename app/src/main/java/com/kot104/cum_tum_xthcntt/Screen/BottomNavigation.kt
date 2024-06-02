@@ -15,12 +15,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -29,8 +29,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.kot104.cum_tum_xthcntt.R
 import com.kot104.cum_tum_xthcntt.ui.theme.Screens
+
 @Composable
-fun BottomNavigation(navControl: NavHostController){
+fun BottomNavigation(navControl: NavHostController) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -42,9 +43,9 @@ fun BottomNavigation(navControl: NavHostController){
 @Composable
 fun MyBottomAppBar(navControl: NavHostController) {
     val navigationController = rememberNavController()
-    val selected = remember { mutableStateOf("home") }
+    val selected = rememberSaveable { mutableStateOf("home") }
 
-    Scaffold (
+    Scaffold(
         bottomBar = {
             BottomAppBar(
                 modifier = Modifier.shadow(8.dp),
@@ -55,7 +56,7 @@ fun MyBottomAppBar(navControl: NavHostController) {
                     onClick = {
                         selected.value = "home"
                         navigationController.navigate(Screens.Home.screen) {
-                            popUpTo(0)
+                            popUpTo(Screens.Home.screen) { inclusive = true }
                         }
                     },
                     icon = painterResource(
@@ -72,7 +73,7 @@ fun MyBottomAppBar(navControl: NavHostController) {
                     onClick = {
                         selected.value = "statistical"
                         navigationController.navigate(Screens.Statistical.screen) {
-                            popUpTo(0)
+                            popUpTo(Screens.Statistical.screen) { inclusive = true }
                         }
                     },
                     icon = painterResource(
@@ -89,7 +90,7 @@ fun MyBottomAppBar(navControl: NavHostController) {
                     onClick = {
                         selected.value = "manage"
                         navigationController.navigate(Screens.Manage.screen) {
-                            popUpTo(0)
+                            popUpTo(Screens.Manage.screen) { inclusive = true }
                         }
                     },
                     icon = painterResource(
@@ -102,17 +103,17 @@ fun MyBottomAppBar(navControl: NavHostController) {
                 )
 
                 BottomNavigationItem(
-                    selected = selected.value == "person",
+                    selected = selected.value == "support",
                     onClick = {
-                        selected.value = "person"
+                        selected.value = "support"
                         navigationController.navigate(Screens.Support.screen) {
-                            popUpTo(0)
+                            popUpTo(Screens.Support.screen) { inclusive = true }
                         }
                     },
                     icon = painterResource(
-                        id = if (selected.value == "person") R.drawable.ic_support_outlined else R.drawable.ic_support
+                        id = if (selected.value == "support") R.drawable.ic_support else R.drawable.ic_support_outlined
                     ),
-                    text = "Profile",
+                    text = "Support",
                     selectedColor = Color.Yellow,
                     unselectedColor = Color.White,
                     modifier = Modifier.weight(1f)

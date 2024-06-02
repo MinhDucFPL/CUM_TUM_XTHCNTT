@@ -1,5 +1,6 @@
 package com.kot104.cum_tum_xthcntt.Screen
 
+import androidx.compose.material3.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,19 +21,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.kot104.cum_tum_xthcntt.R
-import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
-
+import com.kot104.cum_tum_xthcntt.compose.CategoryDeleteItem
+import com.kot104.cum_tum_xthcntt.compose.CategoryDeleteSection
+import com.kot104.cum_tum_xthcntt.compose.DishesDeleteSection
 
 @Composable
-//navController: NavHostController
-fun ManagerCategoriesScreen(navController: NavHostController){
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(0xff252121))) {
+fun DeleteDishesScreen(navController: NavHostController){
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xff252121))
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -41,7 +44,7 @@ fun ManagerCategoriesScreen(navController: NavHostController){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row {
-                IconButton(onClick = { navController.navigate(ROUTE_SCREEN_NAME.MANAGE.name) }) {
+                IconButton(onClick = { navController.navigate("manageCategories") }) {
                     Icon(imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         tint = Color.White,
@@ -60,25 +63,9 @@ fun ManagerCategoriesScreen(navController: NavHostController){
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp)
+                    .padding(16.dp),
             ) {
-                CustomButton(
-                    text = "Thêm loại món ăn",
-                    iconId = R.drawable.logo,
-                    onClick =  {navController.navigate("AddCategory")}
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-                CustomButton(
-                    text = "Sửa loại món ăn",
-                    iconId = R.drawable.logo,
-                    onClick = {navController.navigate("EditCategory")}
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-                CustomButton(
-                    text = "Xoá loại món ăn",
-                    iconId = R.drawable.logo,
-                    onClick = {navController.navigate("DeleteCategory")}
-                )
+                DishesDeleteSection(navController)
             }
         }
     }

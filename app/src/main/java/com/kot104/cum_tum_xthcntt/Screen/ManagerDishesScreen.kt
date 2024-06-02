@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,13 +16,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.kot104.cum_tum_xthcntt.R
+import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
 
 @Composable
-//navController: NavHostController
-fun ManagerDishScreen(navController: NavHostController){
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(0xff252121))) {
+fun ManagerDishScreen(navController: NavHostController) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xff252121))
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -47,19 +48,19 @@ fun ManagerDishScreen(navController: NavHostController){
                 CustomButton(
                     text = "Thêm món ăn",
                     iconId = R.drawable.logo,
-                    onClick =  {navController.navigate("AddDishes")}
+                    onClick = { navController.navigate(ROUTE_SCREEN_NAME.ADDDISHES.name) }
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 CustomButton(
                     text = "Sửa món ăn",
                     iconId = R.drawable.logo,
-                    onClick = {navController.navigate("EditCategory")}
+                    onClick = { navController.navigate(ROUTE_SCREEN_NAME.EDITDISHES.name) }
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 CustomButton(
                     text = "Xoá món ăn",
                     iconId = R.drawable.logo,
-                    onClick = {navController.navigate("DeleteCategory")}
+                    onClick = { navController.navigate(ROUTE_SCREEN_NAME.DELETEDISHES.name) }
                 )
             }
         }

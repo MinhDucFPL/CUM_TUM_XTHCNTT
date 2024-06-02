@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -22,19 +21,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.kot104.cum_tum_xthcntt.R
+import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
 
 @Composable
-//navController: NavHostController
-fun ManageScreen(navController: NavHostController){
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(0xff252121))) {
+fun ManageScreen(navController: NavHostController) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xff252121))
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -58,18 +57,19 @@ fun ManageScreen(navController: NavHostController){
                 CustomButton(
                     text = "Quản lý loại món ăn",
                     iconId = R.drawable.logo,
-                    onClick =  {navController.navigate("manageCategories")}
+                    onClick = { navController.navigate(ROUTE_SCREEN_NAME.MANAGECATEGORIES.name) }
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 CustomButton(
                     text = "Quản lý món ăn",
                     iconId = R.drawable.logo,
-                    onClick = {navController.navigate("managerDish")}
+                    onClick = { navController.navigate(ROUTE_SCREEN_NAME.MANAGEDISHES.name) }
                 )
             }
         }
     }
 }
+
 @Composable
 fun CustomButton(
     text: String,
@@ -81,7 +81,7 @@ fun CustomButton(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 5.dp),
-        colors = ButtonDefaults.buttonColors( Color(0xff2F2D2D)),
+        colors = ButtonDefaults.buttonColors(Color(0xff2F2D2D)),
         shape = RoundedCornerShape(10.dp)
     ) {
         Row(
@@ -93,7 +93,6 @@ fun CustomButton(
                 contentDescription = "",
                 modifier = Modifier.size(50.dp)
             )
-
             Text(
                 text = text,
                 fontSize = 20.sp,

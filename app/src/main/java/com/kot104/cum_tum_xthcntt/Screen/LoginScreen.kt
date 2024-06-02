@@ -148,7 +148,7 @@ fun LoginScreen(navController: NavHostController){
                             .padding(top = 30.dp)
                     ) {
                         Text(
-                            text = "Log in",
+                            text = "Log In",
                             fontSize = 20.sp,
                             modifier = Modifier.padding(5.dp)
                         )
