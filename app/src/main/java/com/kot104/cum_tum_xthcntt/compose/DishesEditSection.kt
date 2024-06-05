@@ -37,6 +37,7 @@ import com.kot104.cum_tum_xthcntt.Model.Category
 import com.kot104.cum_tum_xthcntt.Model.Dishes
 import com.kot104.cum_tum_xthcntt.R
 import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
+import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 
 val dishesLists= listOf(
@@ -127,7 +128,7 @@ fun DishesEditItem(index: Int,navController: NavHostController){
 
 
             }
-            IconButton(onClick = { navController.navigate(ROUTE_SCREEN_NAME.UPDATEDISHES.name) }) {
+            IconButton(onClick = { navController.navigate(Screens.SuaMonAn.screen) }) {
                 Icon(imageVector = Icons.Default.Edit, contentDescription = "", tint = Color.White)
             }
         }

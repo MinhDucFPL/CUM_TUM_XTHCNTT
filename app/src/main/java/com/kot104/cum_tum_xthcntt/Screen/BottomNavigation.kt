@@ -1,11 +1,9 @@
 package com.kot104.cum_tum_xthcntt.Screen
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -26,24 +24,67 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.kot104.cum_tum_xthcntt.R
+import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
+import com.kot104.cum_tum_xthcntt.compose.DishesEditSection
 import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @Composable
-fun BottomNavigation(navControl: NavHostController) {
+fun QuanLyNavHost(modifier: Modifier = Modifier) {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = Screens.QuanLy.screen,
+        modifier = modifier
+    ) {
+        composable(Screens.QuanLy.screen) {
+            ManageScreen(navController)
+        }
+        composable(Screens.QuanLyMonAn.screen) {
+            ManagerDishScreen(navController)
+        }
+        composable(Screens.QuanLyLoaiMonAn.screen) {
+            ManagerCategoriesScreen(navController)
+        }
+        composable(Screens.ThemMonAn.screen) {
+            AddDishesScreen(navController)
+        }
+        composable(Screens.DanhSachSuaMonAn.screen) {
+            DishesEditSection(navController)
+        }
+        composable(Screens.SuaMonAn.screen) {
+            UpdateDishesScreen(navController)
+        }
+        composable(Screens.XoaMonAn.screen) {
+            DeleteDishesScreen(navController)
+        }
+        composable(Screens.ThemLoaiMonAn.screen) {
+            AddCategoryScreen(navController)
+        }
+        composable(Screens.SuaLoaiMonAn.screen) {
+            UpdateCategoryScreen(navController)
+        }
+        composable(Screens.XoaLoaiMonAn.screen) {
+            DeleteCategoryScreen(navController)
+        }
+    }
+}
+@Composable
+fun BottomNavigation(navController: NavHostController) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        MyBottomAppBar(navControl)
+        MyBottomAppBar(navController)
     }
 }
 
 @Composable
-fun MyBottomAppBar(navControl: NavHostController) {
+fun MyBottomAppBar(navController: NavHostController) {
     val navigationController = rememberNavController()
-    val selected = rememberSaveable { mutableStateOf("home") }
+    val selected = rememberSaveable { mutableStateOf(Screens.TrangChu.screen) }
 
     Scaffold(
         bottomBar = {
@@ -52,15 +93,15 @@ fun MyBottomAppBar(navControl: NavHostController) {
                 containerColor = Color(0xFF312C2C)
             ) {
                 BottomNavigationItem(
-                    selected = selected.value == "home",
+                    selected = selected.value == Screens.TrangChu.screen,
                     onClick = {
-                        selected.value = "home"
-                        navigationController.navigate(Screens.Home.screen) {
-                            popUpTo(Screens.Home.screen) { inclusive = true }
+                        selected.value = Screens.TrangChu.screen
+                        navigationController.navigate(Screens.TrangChu.screen) {
+                            popUpTo(Screens.TrangChu.screen) { inclusive = true }
                         }
                     },
                     icon = painterResource(
-                        id = if (selected.value == "home") R.drawable.ic_home else R.drawable.ic_home_outlined
+                        id = if (selected.value == Screens.TrangChu.screen) R.drawable.ic_home else R.drawable.ic_home_outlined
                     ),
                     text = "Trang chủ",
                     selectedColor = Color.Yellow,
@@ -69,15 +110,15 @@ fun MyBottomAppBar(navControl: NavHostController) {
                 )
 
                 BottomNavigationItem(
-                    selected = selected.value == "statistical",
+                    selected = selected.value == "ThongKe",
                     onClick = {
-                        selected.value = "statistical"
-                        navigationController.navigate(Screens.Statistical.screen) {
-                            popUpTo(Screens.Statistical.screen) { inclusive = true }
+                        selected.value = "ThongKe"
+                        navigationController.navigate(Screens.ThongKe.screen) {
+                            popUpTo(Screens.ThongKe.screen) { inclusive = true }
                         }
                     },
                     icon = painterResource(
-                        id = if (selected.value == "statistical") R.drawable.ic_shopping_cart else R.drawable.ic_shopping_cart_outlined
+                        id = if (selected.value == "ThongKe") R.drawable.ic_shopping_cart else R.drawable.ic_shopping_cart_outlined
                     ),
                     text = "Thống kê",
                     selectedColor = Color.Yellow,
@@ -86,15 +127,15 @@ fun MyBottomAppBar(navControl: NavHostController) {
                 )
 
                 BottomNavigationItem(
-                    selected = selected.value == "manage",
+                    selected = selected.value == "QuanLy",
                     onClick = {
-                        selected.value = "manage"
-                        navigationController.navigate(Screens.Manage.screen) {
-                            popUpTo(Screens.Manage.screen) { inclusive = true }
+                        selected.value = "QuanLy"
+                        navigationController.navigate(Screens.QuanLy.screen) {
+                            popUpTo(Screens.QuanLy.screen) { inclusive = true }
                         }
                     },
                     icon = painterResource(
-                        id = if (selected.value == "manage") R.drawable.ic_manage else R.drawable.ic_manage_outlined
+                        id = if (selected.value == "QuanLy") R.drawable.ic_manage else R.drawable.ic_manage_outlined
                     ),
                     text = "Quản lý",
                     selectedColor = Color.Yellow,
@@ -103,15 +144,15 @@ fun MyBottomAppBar(navControl: NavHostController) {
                 )
 
                 BottomNavigationItem(
-                    selected = selected.value == "support",
+                    selected = selected.value == "HoTro",
                     onClick = {
-                        selected.value = "support"
-                        navigationController.navigate(Screens.Support.screen) {
-                            popUpTo(Screens.Support.screen) { inclusive = true }
+                        selected.value = "HoTro"
+                        navigationController.navigate(Screens.HoTro.screen) {
+                            popUpTo(Screens.HoTro.screen) { inclusive = true }
                         }
                     },
                     icon = painterResource(
-                        id = if (selected.value == "support") R.drawable.ic_support else R.drawable.ic_support_outlined
+                        id = if (selected.value == "HoTro") R.drawable.ic_support else R.drawable.ic_support_outlined
                     ),
                     text = "Support",
                     selectedColor = Color.Yellow,
@@ -123,13 +164,14 @@ fun MyBottomAppBar(navControl: NavHostController) {
     ) { paddingValues ->
         NavHost(
             navController = navigationController,
-            startDestination = Screens.Home.screen,
+            startDestination = Screens.TrangChu.screen,
             modifier = Modifier.padding(paddingValues)
         ) {
-            composable(Screens.Home.screen) { HomeScreen(navControl) }
-            composable(Screens.Statistical.screen) { StatisticalScreen(navControl) }
-            composable(Screens.Manage.screen) { ManageScreen(navControl) }
-            composable(Screens.Support.screen) { SupportScreen(navControl) }
+            composable(Screens.TrangChu.screen) { HomeScreen(navController) }
+            composable(Screens.ThongKe.screen) { StatisticalScreen(navController) }
+            composable(Screens.QuanLy.screen) { QuanLyNavHost() }
+            composable(Screens.HoTro.screen) { SupportScreen(navController) }
+//            composable(Screens.QuanLyMonAn.screen) { QuanLyMonAnNavHost(navController) }
         }
     }
 }

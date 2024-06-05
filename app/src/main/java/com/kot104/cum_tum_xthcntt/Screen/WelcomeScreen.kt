@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.kot104.cum_tum_xthcntt.R
+import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 import kotlinx.coroutines.delay
 
 @Composable
@@ -34,7 +35,7 @@ fun WelcomeScreen(navController: NavHostController) {
 
     LaunchedEffect(key1 = Unit) {
         delay(3000) // Chờ 3 giây
-        navController.navigate("login")
+        navController.navigate(Screens.DangNhap.screen)
     }
 }
 

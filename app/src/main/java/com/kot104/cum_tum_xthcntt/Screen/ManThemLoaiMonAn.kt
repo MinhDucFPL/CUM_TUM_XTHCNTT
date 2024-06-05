@@ -16,9 +16,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -34,12 +37,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
+import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
+import com.kot104.cum_tum_xthcntt.ui.theme.Screens
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 //navController: NavHostController
-fun UpdateCategoryScreen(navController: NavHostController) {
+fun AddCategoryScreen(navController: NavHostController) {
     var category by remember { mutableStateOf("") }
     var showDialog by remember { mutableStateOf(false) }
     var dialogMessage by remember { mutableStateOf("") }
@@ -64,10 +71,10 @@ fun UpdateCategoryScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row {
-                IconButton(onClick = { navController.navigate("EditCategory") }) {
+                IconButton(onClick = { navController.navigate(Screens.QuanLyLoaiMonAn.screen) }) {
                     Icon(imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
-                        tint = Color.Black,
+                        tint = Color.White,
                         modifier = Modifier.size(30.dp)
                     )
                 }
@@ -88,6 +95,11 @@ fun UpdateCategoryScreen(navController: NavHostController) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Text(
+                    text = "Add Category",
+                    fontSize = 30.sp,
+                    color = Color.White
+                )
                 TextField(
                     colors = TextFieldDefaults.textFieldColors(
                         containerColor = Color.White
@@ -103,21 +115,62 @@ fun UpdateCategoryScreen(navController: NavHostController) {
                 )
                 Button(
                     onClick = {
-                        dialogMessage = "Cập nhật thành công"
+                        dialogMessage = "Thêm thành công"
                         showDialog=true
-                        navController.navigate("EditCategory")
+                        navController.navigate(Screens.QuanLyLoaiMonAn.screen)
                     },
                     modifier = Modifier
                         .fillMaxWidth(0.4f),
                     shape = RoundedCornerShape(10.dp),
                     colors = ButtonDefaults.buttonColors(Color(0xffFFB703))
-                ) {
+                    ) {
                     Text(
-                        text = "Update",
+                        text = "Thêm",
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         letterSpacing = 0.2.em
                     )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun DialogComponent(
+    onConfirmation: () -> Unit,
+    dialogTitle: String,
+    dialogMessage: String,
+) {
+    Dialog(onDismissRequest = {}) {
+        Card(
+            colors = CardDefaults.cardColors(
+                containerColor = Color.White,
+            ),
+            modifier = Modifier.padding(20.dp),
+            elevation = CardDefaults.cardElevation(
+                defaultElevation = 10.dp
+            )
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.Start,
+            ) {
+                Text(dialogTitle, style =
+                MaterialTheme.typography.titleLarge)
+                Spacer(modifier = Modifier.height(20.dp))
+                Text(dialogMessage, style =
+                MaterialTheme.typography.bodyMedium)
+                Spacer(modifier = Modifier.height(20.dp))
+                Button(
+                    onClick = onConfirmation,
+                    modifier = Modifier.align(Alignment.End),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.DarkGray,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text("Okay")
                 }
             }
         }

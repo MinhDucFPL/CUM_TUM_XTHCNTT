@@ -15,20 +15,17 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.kot104.cum_tum_xthcntt.compose.CategorySection
+import com.kot104.cum_tum_xthcntt.compose.DishesDeleteSection
+import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @Composable
-//navController: NavHostController
-fun EditCategoryScreen(navController: NavHostController) {
+fun DeleteDishesScreen(navController: NavHostController){
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -42,7 +39,7 @@ fun EditCategoryScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row {
-                IconButton(onClick = { navController.navigate("manageCategories") }) {
+                IconButton(onClick = { navController.navigate(Screens.QuanLyMonAn.screen) }) {
                     Icon(imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         tint = Color.White,
@@ -63,7 +60,7 @@ fun EditCategoryScreen(navController: NavHostController) {
                     .fillMaxSize()
                     .padding(16.dp),
             ) {
-                CategorySection(navController)
+                DishesDeleteSection(navController)
             }
         }
     }

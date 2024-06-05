@@ -15,26 +15,25 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.kot104.cum_tum_xthcntt.compose.CategoryDeleteItem
-import com.kot104.cum_tum_xthcntt.compose.CategoryDeleteSection
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.kot104.cum_tum_xthcntt.R
+import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
+import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @Composable
 //navController: NavHostController
-fun DeleteCategoryScreen(navController: NavHostController) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xff252121))
-    ) {
+fun ManagerCategoriesScreen(navController: NavHostController){
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color(0xff252121))) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -43,11 +42,11 @@ fun DeleteCategoryScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row {
-                IconButton(onClick = { navController.navigate("manageCategories") }) {
+                IconButton(onClick = { navController.navigate(Screens.QuanLy.screen) }) {
                     Icon(imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         tint = Color.White,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(20.dp)
                     )
                 }
                 TopAppBar()
@@ -62,9 +61,25 @@ fun DeleteCategoryScreen(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp),
+                    .padding(16.dp)
             ) {
-                CategoryDeleteSection(navController)
+                CustomButton(
+                    text = "Thêm loại món ăn",
+                    iconId = R.drawable.logo,
+                    onClick =  {navController.navigate(Screens.ThemLoaiMonAn.screen)}
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                CustomButton(
+                    text = "Sửa loại món ăn",
+                    iconId = R.drawable.logo,
+                    onClick = {navController.navigate(Screens.SuaLoaiMonAn.screen)}
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                CustomButton(
+                    text = "Xoá loại món ăn",
+                    iconId = R.drawable.logo,
+                    onClick = {navController.navigate(Screens.XoaLoaiMonAn.screen)}
+                )
             }
         }
     }

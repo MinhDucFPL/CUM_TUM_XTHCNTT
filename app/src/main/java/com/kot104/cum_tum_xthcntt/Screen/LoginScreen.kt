@@ -38,12 +38,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.kot104.cum_tum_xthcntt.R
+import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
+import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
-//@Preview
-//@Composable
-//fun PreviewLoginScreen() {
-//    LoginScreen()
-//}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -84,7 +81,6 @@ fun LoginScreen(navController: NavHostController){
                             .fillMaxSize(0.6f)
                             .align(Alignment.CenterHorizontally))
                 }
-
 
             }
             Box(
@@ -137,7 +133,7 @@ fun LoginScreen(navController: NavHostController){
                         )
                     }
                     Button(
-                        onClick = {navController.navigate("home")},
+                        onClick = {navController.navigate(Screens.TrangChu.screen)},
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color(0xFF242424)
                         ),

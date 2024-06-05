@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.kot104.cum_tum_xthcntt.R
 import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
+import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @Composable
 fun ManageScreen(navController: NavHostController) {
@@ -57,13 +58,13 @@ fun ManageScreen(navController: NavHostController) {
                 CustomButton(
                     text = "Quản lý loại món ăn",
                     iconId = R.drawable.logo,
-                    onClick = { navController.navigate(ROUTE_SCREEN_NAME.MANAGECATEGORIES.name) }
+                    onClick = { navController.navigate(Screens.QuanLyLoaiMonAn.screen) }
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 CustomButton(
                     text = "Quản lý món ăn",
                     iconId = R.drawable.logo,
-                    onClick = { navController.navigate(ROUTE_SCREEN_NAME.MANAGEDISHES.name) }
+                    onClick = { navController.navigate(Screens.QuanLyMonAn.screen) }
                 )
             }
         }

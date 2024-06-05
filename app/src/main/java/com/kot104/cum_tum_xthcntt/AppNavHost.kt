@@ -5,22 +5,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.kot104.cum_tum_xthcntt.Screen.AddCategoryScreen
 import com.kot104.cum_tum_xthcntt.Screen.AddDishesScreen
 import com.kot104.cum_tum_xthcntt.Screen.BottomNavigation
-import com.kot104.cum_tum_xthcntt.Screen.DeleteCategoryScreen
 import com.kot104.cum_tum_xthcntt.Screen.DeleteDishesScreen
-import com.kot104.cum_tum_xthcntt.Screen.EditCategoryScreen
-import com.kot104.cum_tum_xthcntt.Screen.EditDishesScreen
-import com.kot104.cum_tum_xthcntt.Screen.HomeScreen
 import com.kot104.cum_tum_xthcntt.Screen.LoginScreen
-import com.kot104.cum_tum_xthcntt.Screen.ManageScreen
-import com.kot104.cum_tum_xthcntt.Screen.ManagerCategoriesScreen
-import com.kot104.cum_tum_xthcntt.Screen.ManagerDishScreen
-import com.kot104.cum_tum_xthcntt.Screen.StatisticalScreen
-import com.kot104.cum_tum_xthcntt.Screen.UpdateCategoryScreen
 import com.kot104.cum_tum_xthcntt.Screen.UpdateDishesScreen
 import com.kot104.cum_tum_xthcntt.Screen.WelcomeScreen
+import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 enum class ROUTE_SCREEN_NAME {
     WELCOME,
@@ -43,53 +34,29 @@ enum class ROUTE_SCREEN_NAME {
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    startDestination: String = ROUTE_SCREEN_NAME.WELCOME.name,
+    startDestination: String = Screens.ManChao.screen,
 ) {
     NavHost(
         modifier = modifier,
         navController = navController,
         startDestination = startDestination
     ) {
-        composable(ROUTE_SCREEN_NAME.WELCOME.name) {
+        composable(Screens.ManChao.screen) {
             WelcomeScreen(navController)
         }
-        composable(ROUTE_SCREEN_NAME.LOGIN.name) {
+        composable(Screens.DangNhap.screen) {
             LoginScreen(navController = navController)
         }
-        composable(ROUTE_SCREEN_NAME.HOME.name) {
-            BottomNavigation(navControl = navController)
+        composable(Screens.TrangChu.screen) {
+            BottomNavigation(navController = navController)
         }
-        composable(ROUTE_SCREEN_NAME.MANAGE.name) {
-            ManageScreen(navController = navController)
-        }
-        composable(ROUTE_SCREEN_NAME.MANAGECATEGORIES.name) {
-            ManagerCategoriesScreen(navController = navController)
-        }
-        composable(ROUTE_SCREEN_NAME.ADDCATEGORY.name) {
-            AddCategoryScreen(navController = navController)
-        }
-        composable(ROUTE_SCREEN_NAME.EDITCATEGORY.name) {
-            EditCategoryScreen(navController = navController)
-        }
-        composable(ROUTE_SCREEN_NAME.DELETECATEGORY.name) {
-            DeleteCategoryScreen(navController = navController)
-        }
-        composable(ROUTE_SCREEN_NAME.UPDATECATEGORY.name) {
-            UpdateCategoryScreen(navController = navController)
-        }
-        composable(ROUTE_SCREEN_NAME.MANAGEDISHES.name) {
-            ManagerDishScreen(navController = navController)
-        }
-        composable(ROUTE_SCREEN_NAME.ADDDISHES.name) {
+        composable(Screens.ThemMonAn.screen) {
             AddDishesScreen(navController = navController)
         }
-        composable(ROUTE_SCREEN_NAME.EDITDISHES.name) {
-            EditDishesScreen(navController = navController)
-        }
-        composable(ROUTE_SCREEN_NAME.UPDATEDISHES.name) {
+        composable(Screens.SuaMonAn.screen) {
             UpdateDishesScreen(navController = navController)
         }
-        composable(ROUTE_SCREEN_NAME.DELETEDISHES.name) {
+        composable(Screens.XoaMonAn.screen) {
             DeleteDishesScreen(navController = navController)
         }
     }
