@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @Composable
 fun CategoryDeleteSection(navController: NavHostController){
@@ -65,18 +66,18 @@ fun CategoryDeleteItem(index: Int,navController: NavHostController){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "${cat.id}",
+                    text = "${cat._id}",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
                 Text(
-                    text = "${cat.name} ",
+                    text = "${cat._id} ",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
-                IconButton(onClick = { navController.navigate("manageCategories") }) {
+                IconButton(onClick = { navController.navigateUp() }) {
                     Icon(imageVector = Icons.Default.Delete, contentDescription = "", tint = Color.White)
                 }
             }

@@ -33,7 +33,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.kot104.cum_tum_xthcntt.Model.Category
 import com.kot104.cum_tum_xthcntt.Model.Dishes
 import com.kot104.cum_tum_xthcntt.R
 import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME

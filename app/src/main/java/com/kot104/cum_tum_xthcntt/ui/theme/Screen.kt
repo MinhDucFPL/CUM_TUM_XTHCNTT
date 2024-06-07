@@ -12,8 +12,10 @@ sealed class Screens(val screen: String){
     data object ThemMonAn : Screens("ThemMonAn")
     data object SuaMonAn : Screens("SuaMonAn")
     data object DanhSachSuaMonAn : Screens("DanhSachSuaMonAn")
+    data object DanhSachSuaLoaiMonAn : Screens("DanhSachSuaLoaiMonAn")
     data object XoaMonAn : Screens("XoaMonAn")
     data object ThemLoaiMonAn : Screens("ThemLoaiMonAn")
     data object SuaLoaiMonAn : Screens("SuaLoaiMonAn")
     data object XoaLoaiMonAn : Screens("XoaLoaiMonAn")
+    data object DanhSachXoaMon : Screens("DanhSachXoaMon")
 }

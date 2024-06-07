@@ -44,7 +44,7 @@ fun ManagerDishScreen(navController: NavHostController) {
         ) {
             Row {
                 //navController.navigate("manageCategories")
-                IconButton(onClick = { navController.navigate(Screens.QuanLy.screen)}) {
+                IconButton(onClick = { navController.navigateUp()}) {
                     Icon(imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         tint = Color.White,

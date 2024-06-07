@@ -24,12 +24,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.kot104.cum_tum_xthcntt.Model.Category
+import com.kot104.cum_tum_xthcntt.Model.LoaiMonAn
 
 val categoryLists= listOf(
-    Category(1, "Sườn"),
-    Category(2, "Sườn Bì"),
-    Category(3, "Bì Chả")
+    LoaiMonAn("1", "Sườn"),
+    LoaiMonAn("2", "Sườn Bì"),
+    LoaiMonAn("3", "Bì Chả")
 )
 
 @Composable
@@ -71,18 +71,18 @@ fun CategoryItem(index: Int,navController: NavHostController){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                     Text(
-                        text = "${cat.id}",
+                        text = "${cat._id}",
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp
                     )
                     Text(
-                        text = "${cat.name} ",
+                        text = "${cat._id} ",
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp
                     )
-                    IconButton(onClick = { navController.navigate("UpdateCategory") }) {
+                    IconButton(onClick = { navController.navigateUp()}) {
                         Icon(imageVector = Icons.Default.Edit, contentDescription = "", tint = Color.White)
                     }
             }

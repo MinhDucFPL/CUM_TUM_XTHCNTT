@@ -28,12 +28,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.kot104.cum_tum_xthcntt.R
 import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
+import com.kot104.cum_tum_xthcntt.compose.CategorySection
 import com.kot104.cum_tum_xthcntt.compose.DishesEditSection
 import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @Composable
-fun QuanLyNavHost(modifier: Modifier = Modifier) {
+fun QuanLyNavHost(modifier: Modifier = Modifier,navEdit: NavHostController) {
     val navController = rememberNavController()
+
     NavHost(
         navController = navController,
         startDestination = Screens.QuanLy.screen,
@@ -43,34 +45,15 @@ fun QuanLyNavHost(modifier: Modifier = Modifier) {
             ManageScreen(navController)
         }
         composable(Screens.QuanLyMonAn.screen) {
-            ManagerDishScreen(navController)
+            ManagerDishScreen(navEdit)
         }
         composable(Screens.QuanLyLoaiMonAn.screen) {
-            ManagerCategoriesScreen(navController)
+            ManagerCategoriesScreen(navEdit)
         }
-        composable(Screens.ThemMonAn.screen) {
-            AddDishesScreen(navController)
-        }
-        composable(Screens.DanhSachSuaMonAn.screen) {
-            DishesEditSection(navController)
-        }
-        composable(Screens.SuaMonAn.screen) {
-            UpdateDishesScreen(navController)
-        }
-        composable(Screens.XoaMonAn.screen) {
-            DeleteDishesScreen(navController)
-        }
-        composable(Screens.ThemLoaiMonAn.screen) {
-            AddCategoryScreen(navController)
-        }
-        composable(Screens.SuaLoaiMonAn.screen) {
-            UpdateCategoryScreen(navController)
-        }
-        composable(Screens.XoaLoaiMonAn.screen) {
-            DeleteCategoryScreen(navController)
-        }
+
     }
 }
+
 @Composable
 fun BottomNavigation(navController: NavHostController) {
     Surface(
@@ -169,7 +152,7 @@ fun MyBottomAppBar(navController: NavHostController) {
         ) {
             composable(Screens.TrangChu.screen) { HomeScreen(navController) }
             composable(Screens.ThongKe.screen) { StatisticalScreen(navController) }
-            composable(Screens.QuanLy.screen) { QuanLyNavHost() }
+            composable(Screens.QuanLy.screen) { QuanLyNavHost(navEdit = navController) }
             composable(Screens.HoTro.screen) { SupportScreen(navController) }
 //            composable(Screens.QuanLyMonAn.screen) { QuanLyMonAnNavHost(navController) }
         }

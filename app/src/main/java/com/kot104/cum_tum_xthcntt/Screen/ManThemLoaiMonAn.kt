@@ -38,8 +38,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.kot104.cum_tum_xthcntt.Model.LoaiMonAn
 import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
+import com.kot104.cum_tum_xthcntt.ViewModel.LoaiMonAnViewModel
 import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 
@@ -50,6 +53,8 @@ fun AddCategoryScreen(navController: NavHostController) {
     var category by remember { mutableStateOf("") }
     var showDialog by remember { mutableStateOf(false) }
     var dialogMessage by remember { mutableStateOf("") }
+    val categoryViewModel: LoaiMonAnViewModel = viewModel()
+
     if (showDialog) {
         DialogComponent(
             onConfirmation = { showDialog = false },
@@ -71,7 +76,7 @@ fun AddCategoryScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row {
-                IconButton(onClick = { navController.navigate(Screens.QuanLyLoaiMonAn.screen) }) {
+                IconButton(onClick = { navController.navigateUp() }) {
                     Icon(imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         tint = Color.White,
@@ -96,7 +101,7 @@ fun AddCategoryScreen(navController: NavHostController) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Add Category",
+                    text = "Thêm loại món ăn",
                     fontSize = 30.sp,
                     color = Color.White
                 )
@@ -106,8 +111,8 @@ fun AddCategoryScreen(navController: NavHostController) {
                     ),
                     value = category,
                     onValueChange = {category = it},
-                    label = { Text(text = "Nhập loại món ăn") },
-                    placeholder = { Text(text = "Nhập loại món ăn") },
+                    label = { Text(text = "Nhập tên loại món") },
+                    placeholder = { Text(text = "Nhập tên loại món") },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(25.dp),
@@ -115,9 +120,17 @@ fun AddCategoryScreen(navController: NavHostController) {
                 )
                 Button(
                     onClick = {
-                        dialogMessage = "Thêm thành công"
-                        showDialog=true
-                        navController.navigate(Screens.QuanLyLoaiMonAn.screen)
+                        val newCategory = LoaiMonAn(tenLoaiMon = category)
+                        categoryViewModel.themLoaiMon(newCategory) { result ->
+                            if (result != null) {
+                                dialogMessage = "Thêm thành công"
+                                showDialog = true
+                                navController.navigateUp()
+                            } else {
+                                dialogMessage = "Thêm thất bại"
+                                showDialog = true
+                            }
+                        }
                     },
                     modifier = Modifier
                         .fillMaxWidth(0.4f),

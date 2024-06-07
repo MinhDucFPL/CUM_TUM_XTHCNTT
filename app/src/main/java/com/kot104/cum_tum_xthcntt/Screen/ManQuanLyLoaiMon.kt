@@ -42,7 +42,7 @@ fun ManagerCategoriesScreen(navController: NavHostController){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row {
-                IconButton(onClick = { navController.navigate(Screens.QuanLy.screen) }) {
+                IconButton(onClick = { navController.navigateUp() }) {
                     Icon(imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         tint = Color.White,
@@ -72,7 +72,7 @@ fun ManagerCategoriesScreen(navController: NavHostController){
                 CustomButton(
                     text = "Sửa loại món ăn",
                     iconId = R.drawable.logo,
-                    onClick = {navController.navigate(Screens.SuaLoaiMonAn.screen)}
+                    onClick = {navController.navigate(Screens.DanhSachSuaLoaiMonAn.screen)}
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 CustomButton(

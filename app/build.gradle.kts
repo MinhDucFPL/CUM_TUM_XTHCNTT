@@ -51,6 +51,9 @@ android {
 
 dependencies {
     implementation ("androidx.navigation:navigation-compose:2.7.1")
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
 
     val nav_version = "2.7.7"
     // Java language implementation
