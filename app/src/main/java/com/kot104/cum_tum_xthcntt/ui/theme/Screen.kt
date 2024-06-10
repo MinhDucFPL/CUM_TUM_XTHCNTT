@@ -3,6 +3,7 @@ package com.kot104.cum_tum_xthcntt.ui.theme
 sealed class Screens(val screen: String){
     data object ManChao : Screens("ManChao")
     data object DangNhap : Screens("DangNhap")
+    data object Register : Screens("Register")
     data object TrangChu : Screens("TrangChu")
     data object ThongKe : Screens("ThongKe")
     data object QuanLy : Screens("QuanLy")

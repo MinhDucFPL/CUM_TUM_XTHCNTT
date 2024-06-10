@@ -44,7 +44,7 @@ fun ManagerDishScreen(navController: NavHostController) {
         ) {
             Row {
                 //navController.navigate("manageCategories")
-                IconButton(onClick = { navController.navigateUp()}) {
+                IconButton(onClick = {  navController.navigate("TrangChu")}) {
                     Icon(imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         tint = Color.White,

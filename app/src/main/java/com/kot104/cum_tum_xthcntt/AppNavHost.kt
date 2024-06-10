@@ -11,6 +11,8 @@ import com.kot104.cum_tum_xthcntt.Screen.BottomNavigation
 import com.kot104.cum_tum_xthcntt.Screen.DeleteCategoryScreen
 import com.kot104.cum_tum_xthcntt.Screen.DeleteDishesScreen
 import com.kot104.cum_tum_xthcntt.Screen.LoginScreen
+import com.kot104.cum_tum_xthcntt.Screen.ManageScreen
+import com.kot104.cum_tum_xthcntt.Screen.Register
 import com.kot104.cum_tum_xthcntt.Screen.UpdateCategoryScreen
 import com.kot104.cum_tum_xthcntt.Screen.UpdateDishesScreen
 import com.kot104.cum_tum_xthcntt.Screen.WelcomeScreen
@@ -55,6 +57,9 @@ fun AppNavHost(
         }
         composable(Screens.TrangChu.screen) {
             BottomNavigation(navController = navController)
+        }
+        composable(Screens.Register.screen){
+            Register(navControl = navController)
         }
         composable(Screens.ThemMonAn.screen) {
             AddDishesScreen(navController = navController)

@@ -58,13 +58,13 @@ fun ManageScreen(navController: NavHostController) {
                 CustomButton(
                     text = "Quản lý loại món ăn",
                     iconId = R.drawable.logo,
-                    onClick = { navController.navigate(Screens.QuanLyLoaiMonAn.screen) }
+                    onClick = { navController.navigate("QuanLyLoaiMonAn") }
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 CustomButton(
                     text = "Quản lý món ăn",
                     iconId = R.drawable.logo,
-                    onClick = { navController.navigate(Screens.QuanLyMonAn.screen) }
+                    onClick = { navController.navigate("QuanLyMonAn") }
                 )
             }
         }

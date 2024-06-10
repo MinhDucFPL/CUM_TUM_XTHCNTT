@@ -151,7 +151,7 @@ fun LoginScreen(navController: NavHostController){
 
                     }
                     TextButton(
-                        onClick = {},
+                        onClick = {navController.navigate("Register")},
                         modifier = Modifier
                             .align(Alignment.CenterHorizontally)
                             .padding(top = 10.dp)) {
