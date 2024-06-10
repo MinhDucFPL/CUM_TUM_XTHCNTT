@@ -13,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import com.kot104.cum_tum_xthcntt.ViewModel.LoaiMonAnViewModel
+import com.kot104.cum_tum_xthcntt.ViewModel.MonAnViewModel
 import com.kot104.cum_tum_xthcntt.ui.theme.CUM_TUM_XTHCNTTTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,7 +26,13 @@ class MainActivity : ComponentActivity() {
             CUM_TUM_XTHCNTTTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     val navController = rememberNavController()
-                    AppNavHost(navController = navController)
+                    val monAnViewModel = MonAnViewModel()
+                    val loaiMonAnViewModel = LoaiMonAnViewModel()
+                    AppNavHost(
+                        navController = navController,
+                        monAnViewModel = monAnViewModel,
+                        loaiMonAnViewModel = loaiMonAnViewModel
+                    )
                 }
             }
         }

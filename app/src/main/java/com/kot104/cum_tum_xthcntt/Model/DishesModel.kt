@@ -1,9 +1,9 @@
 package com.kot104.cum_tum_xthcntt.Model
 
-data class Dishes(
-    val id: Int,
-    val image: String,
-    val category: LoaiMonAn,
-    val name:String,
-    val price: Int
+data class MonAn(
+    val _id: String,
+    val tenMon: String,
+    val giaMon: Double,
+    val hinhAnh: String?,
+    val id_loaiMonAn: String
 )

@@ -1,4 +1,4 @@
-package com.kot104.cum_tum_xthcntt.Screen
+package com.kot104.cum_tum_xthcntt.Screen.admin
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,11 +21,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.kot104.cum_tum_xthcntt.compose.DishesDeleteSection
+import com.kot104.cum_tum_xthcntt.R
 import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @Composable
-fun DeleteDishesScreen(navController: NavHostController){
+fun ManagerDishScreen(navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -39,11 +39,12 @@ fun DeleteDishesScreen(navController: NavHostController){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row {
-                IconButton(onClick = { navController.navigate(Screens.QuanLyMonAn.screen) }) {
+                //navController.navigate("manageCategories")
+                IconButton(onClick = {  navController.navigate("TrangChu")}) {
                     Icon(imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         tint = Color.White,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(20.dp)
                     )
                 }
                 TopAppBar()
@@ -58,9 +59,25 @@ fun DeleteDishesScreen(navController: NavHostController){
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp),
+                    .padding(16.dp)
             ) {
-                DishesDeleteSection(navController)
+                CustomButton(
+                    text = "Thêm món ăn",
+                    iconId = R.drawable.logo,
+                    onClick = { navController.navigate(Screens.ThemMonAn.screen) }
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                CustomButton(
+                    text = "Sửa món ăn",
+                    iconId = R.drawable.logo,
+                    onClick = { navController.navigate(Screens.DanhSachSuaMonAn.screen) }
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                CustomButton(
+                    text = "Xoá món ăn",
+                    iconId = R.drawable.logo,
+                    onClick = { navController.navigate(Screens.XoaMonAn.screen) }
+                )
             }
         }
     }

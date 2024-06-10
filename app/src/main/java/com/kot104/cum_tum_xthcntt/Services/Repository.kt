@@ -1,58 +1,145 @@
 package com.kot104.cum_tum_xthcntt.Services
 
+import android.util.Log
 import com.kot104.cum_tum_xthcntt.Model.LoaiMonAn
+import com.kot104.cum_tum_xthcntt.Model.MonAn
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 class Repository {
     private val apiService = RetrofitService().apiService
 
-    fun themLoaiMon(category: LoaiMonAn, onResult: (LoaiMonAn?) -> Unit) {
-        apiService.themLoaiMon(category).enqueue(object : Callback<LoaiMonAn> {
-            override fun onResponse(call: Call<LoaiMonAn>, response: Response<LoaiMonAn>) {
-                onResult(response.body())
+    suspend fun themLoaiMon(category: LoaiMonAn): LoaiMonAn? {
+        return try {
+            val response = apiService.themLoaiMon(category)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.e("Repository", "Thêm loại món thất bại: ${response.errorBody()?.string()}")
+                null
             }
-
-            override fun onFailure(call: Call<LoaiMonAn>, t: Throwable) {
-                onResult(null)
-            }
-        })
+        } catch (e: Exception) {
+            Log.e("Repository", "Ngoại lệ khi thêm loại món", e)
+            null
+        }
     }
 
-    fun suaLoaiMon(id: String, category: LoaiMonAn, onResult: (LoaiMonAn?) -> Unit) {
-        apiService.suaLoaiMon(id, category).enqueue(object : Callback<LoaiMonAn> {
-            override fun onResponse(call: Call<LoaiMonAn>, response: Response<LoaiMonAn>) {
-                onResult(response.body())
+    suspend fun suaLoaiMon(id: String, category: LoaiMonAn): LoaiMonAn? {
+        return try {
+            val response = apiService.suaLoaiMon(id, category)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.e("Repository", "Sửa loại món thất bại: ${response.errorBody()?.string()}")
+                null
             }
-
-            override fun onFailure(call: Call<LoaiMonAn>, t: Throwable) {
-                onResult(null)
-            }
-        })
+        } catch (e: Exception) {
+            Log.e("Repository", "Ngoại lệ khi sửa loại món", e)
+            null
+        }
     }
 
-    fun xoaLoaiMon(id: String, onResult: (LoaiMonAn?) -> Unit) {
-        apiService.xoaLoaiMon(id).enqueue(object : Callback<LoaiMonAn> {
-            override fun onResponse(call: Call<LoaiMonAn>, response: Response<LoaiMonAn>) {
-                onResult(response.body())
+    suspend fun xoaLoaiMon(id: String): LoaiMonAn? {
+        return try {
+            val response = apiService.xoaLoaiMon(id)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.e("Repository", "Xóa loại món thất bại: ${response.errorBody()?.string()}")
+                null
             }
-
-            override fun onFailure(call: Call<LoaiMonAn>, t: Throwable) {
-                onResult(null)
-            }
-        })
+        } catch (e: Exception) {
+            Log.e("Repository", "Ngoại lệ khi xóa loại món", e)
+            null
+        }
     }
 
-    fun layDanhSachLoaiMon(onResult: (List<LoaiMonAn>?) -> Unit) {
-        apiService.layDanhSachLoaiMon().enqueue(object : Callback<List<LoaiMonAn>> {
-            override fun onResponse(call: Call<List<LoaiMonAn>>, response: Response<List<LoaiMonAn>>) {
-                onResult(response.body())
+    suspend fun layDanhSachLoaiMon(): List<LoaiMonAn>? {
+        return try {
+            val response = apiService.layDanhSachLoaiMon()
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.e("Repository", "Lấy danh sách loại món thất bại: ${response.errorBody()?.string()}")
+                null
             }
+        } catch (e: Exception) {
+            Log.e("Repository", "Ngoại lệ khi lấy danh sách loại món", e)
+            null
+        }
+    }
 
-            override fun onFailure(call: Call<List<LoaiMonAn>>, t: Throwable) {
-                onResult(null)
+    suspend fun themMonAn(name: String, price: String, categoryId: String, imageFile: File): MonAn? {
+        return try {
+            val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
+            val body = MultipartBody.Part.createFormData("hinhAnh", imageFile.name, requestFile)
+            val namePart = RequestBody.create("text/plain".toMediaTypeOrNull(), name)
+            val pricePart = RequestBody.create("text/plain".toMediaTypeOrNull(), price)
+            val categoryIdPart = RequestBody.create("text/plain".toMediaTypeOrNull(), categoryId)
+
+            val response = apiService.themMonAn(body, namePart, pricePart, categoryIdPart)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.e("Repository", "Thêm món ăn thất bại: ${response.errorBody()?.string()}")
+                null
             }
-        })
+        } catch (e: Exception) {
+            Log.e("Repository", "Ngoại lệ khi thêm món ăn", e)
+            null
+        }
+    }
+
+    suspend fun suaMonAn(id: String, name: String, price: String, categoryId: String, imageFile: File): MonAn? {
+        return try {
+            val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
+            val body = MultipartBody.Part.createFormData("hinhAnh", imageFile.name, requestFile)
+            val namePart = RequestBody.create("text/plain".toMediaTypeOrNull(), name)
+            val pricePart = RequestBody.create("text/plain".toMediaTypeOrNull(), price)
+            val categoryIdPart = RequestBody.create("text/plain".toMediaTypeOrNull(), categoryId)
+
+            val response = apiService.suaMonAn(id, body, namePart, pricePart, categoryIdPart)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.e("Repository", "Sửa món ăn thất bại: ${response.errorBody()?.string()}")
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("Repository", "Ngoại lệ khi sửa món ăn", e)
+            null
+        }
+    }
+
+    suspend fun xoaMonAn(id: String): MonAn? {
+        return try {
+            val response = apiService.xoaMonAn(id)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.e("Repository", "Xóa món ăn thất bại: ${response.errorBody()?.string()}")
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("Repository", "Ngoại lệ khi xóa món ăn", e)
+            null
+        }
+    }
+
+    suspend fun layDanhSachMonAn(): List<MonAn>? {
+        return try {
+            val response = apiService.layDanhSachMonAn()
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.e("Repository", "Lấy danh sách món ăn thất bại: ${response.errorBody()?.string()}")
+                null
+            }
+        } catch (e: Exception) {
+            Log.e("Repository", "Ngoại lệ khi lấy danh sách món ăn", e)
+            null
+        }
     }
 }

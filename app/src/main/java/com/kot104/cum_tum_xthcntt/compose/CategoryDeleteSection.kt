@@ -18,6 +18,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,34 +27,26 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.kot104.cum_tum_xthcntt.Model.LoaiMonAn
+import com.kot104.cum_tum_xthcntt.Screen.admin.CarDialog
 import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @Composable
-fun CategoryDeleteSection(navController: NavHostController){
-    LazyColumn {
-        items(categoryLists.size) { index ->
-            CategoryDeleteItem(index,navController)
-            if (index < categoryLists.size - 1) {
-                Divider(
-                    color = Color.Gray,
-                    thickness = 1.dp,
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                )
-            }
-        }
-    }
-}
-@Composable
-fun CategoryDeleteItem(index: Int,navController: NavHostController){
-    val cat = categoryLists[index]
-    Box (
+fun CategoryDeleteItem(
+    category: LoaiMonAn,
+    index: Int,
+    navController: NavHostController,
+    onDeleteCategory: (LoaiMonAn) -> Unit
+) {
+    // State để theo dõi trạng thái hiển thị của dialog
+    val showDialog = remember { mutableStateOf(false) }
+
+    Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { }
-            .padding(5.dp)
-            .padding(top = 10.dp, bottom = 10.dp),
+            .clickable { },
         contentAlignment = Alignment.Center
-    ){
+    ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -61,27 +55,46 @@ fun CategoryDeleteItem(index: Int,navController: NavHostController){
             Row(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color(0xff2F2D2D), shape = RoundedCornerShape(10.dp)).padding(horizontal = 20.dp),
+                    .background(Color(0xff2F2D2D), shape = RoundedCornerShape(10.dp))
+                    .padding(horizontal = 20.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "${cat._id}",
+                    text = "${index}",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
                 Text(
-                    text = "${cat._id} ",
+                    text = "${category.tenLoaiMon} ",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp
                 )
-                IconButton(onClick = { navController.navigateUp() }) {
+                IconButton(onClick = {
+                    // Khi nhấn vào icon xóa, mở dialog
+                    showDialog.value = true
+                }) {
                     Icon(imageVector = Icons.Default.Delete, contentDescription = "", tint = Color.White)
                 }
             }
+        }
 
+        // Dialog xác nhận xóa
+        if (showDialog.value) {
+            CarDialog(
+                title = "Xác nhận xóa",
+                message = "Bạn có chắc chắn muốn xóa loại món này?",
+                onConfirmClick = {
+                    onDeleteCategory(category)
+                    showDialog.value = false
+                },
+                onDismissClick = {
+                    showDialog.value = false
+                }
+            )
         }
     }
 }
+
