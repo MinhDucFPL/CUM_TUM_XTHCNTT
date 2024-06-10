@@ -1,4 +1,4 @@
-package com.kot104.cum_tum_xthcntt.Screen
+package com.kot104.cum_tum_xthcntt.Screen.admin
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +21,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,18 +29,21 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.kot104.cum_tum_xthcntt.R
 import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 //navController: NavHostController
-fun UpdateCategoryScreen(navController: NavHostController) {
-    var category by remember { mutableStateOf("") }
+fun UpdateDishesScreen(navController: NavHostController) {
+    val gia = remember { mutableStateOf("") }
+    val tenMon = remember { mutableStateOf("") }
     var showDialog by remember { mutableStateOf(false) }
     var dialogMessage by remember { mutableStateOf("") }
     if (showDialog) {
@@ -65,8 +67,9 @@ fun UpdateCategoryScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row {
-                IconButton(onClick = { navController.navigate(Screens.QuanLyLoaiMonAn.screen) }) {
-                    Icon(imageVector = Icons.Default.ArrowBackIosNew,
+                IconButton(onClick = { navController.navigate(Screens.QuanLyMonAn.screen)}) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         tint = Color.Black,
                         modifier = Modifier.size(30.dp)
@@ -89,36 +92,66 @@ fun UpdateCategoryScreen(navController: NavHostController) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                TextField(
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.White
-                    ),
-                    value = category,
-                    onValueChange = {category = it},
-                    label = { Text(text = "Nhập loại món ăn") },
-                    placeholder = { Text(text = "Nhập loại món ăn") },
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(25.dp),
-                    shape = RoundedCornerShape(20.dp)
-                )
-                Button(
-                    onClick = {
-                        dialogMessage = "Cập nhật thành công"
-                        showDialog=true
-                        navController.navigate("EditCategory")
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth(0.4f),
-                    shape = RoundedCornerShape(10.dp),
-                    colors = ButtonDefaults.buttonColors(Color(0xffFFB703))
+                        .padding(start = 20.dp)
+                        .fillMaxWidth(0.9f),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = "Update",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = 0.2.em
+                    ImageButton(
+                        onClick = { /*TODO*/ },
+                        painter = painterResource(id = R.drawable.img_food), contentDescription = ""
                     )
+                    Spacer(modifier = Modifier.height(40.dp))
+                    DropDown()
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text(
+                        text = "Giá",
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 5.dp),
+                        color = Color.White,
+                        fontSize = 18.sp
+                    )
+                    TextField(
+                        value = gia.value,
+                        onValueChange = { gia.value = it },
+                        Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text(
+                        text = "Tên món",
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 5.dp),
+                        color = Color.White,
+                        fontSize = 18.sp
+                    )
+                    TextField(
+                        value = tenMon.value,
+                        onValueChange = { tenMon.value = it },
+                        Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(30.dp))
+                    Button(
+                        onClick = {
+                            dialogMessage = "Cập nhật thành công"
+                            showDialog = true
+                            navController.navigate(Screens.QuanLyMonAn.screen)
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth(0.4f),
+                        shape = RoundedCornerShape(10.dp),
+                        colors = ButtonDefaults.buttonColors(Color(0xffFFB703))
+                    ) {
+                        Text(
+                            text = "Update",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 0.2.em
+                        )
+                    }
                 }
             }
         }

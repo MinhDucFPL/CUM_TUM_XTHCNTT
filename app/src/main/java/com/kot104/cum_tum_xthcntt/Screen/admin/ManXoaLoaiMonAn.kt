@@ -1,4 +1,4 @@
-package com.kot104.cum_tum_xthcntt.Screen
+package com.kot104.cum_tum_xthcntt.Screen.admin
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,11 +21,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.kot104.cum_tum_xthcntt.compose.DishesDeleteSection
+import com.kot104.cum_tum_xthcntt.compose.CategoryDeleteSection
 import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @Composable
-fun DeleteDishesScreen(navController: NavHostController){
+//navController: NavHostController
+fun DeleteCategoryScreen(navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -39,7 +40,7 @@ fun DeleteDishesScreen(navController: NavHostController){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row {
-                IconButton(onClick = { navController.navigate(Screens.QuanLyMonAn.screen) }) {
+                IconButton(onClick = { navController.navigate(Screens.QuanLyLoaiMonAn.screen) }) {
                     Icon(imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         tint = Color.White,
@@ -60,7 +61,7 @@ fun DeleteDishesScreen(navController: NavHostController){
                     .fillMaxSize()
                     .padding(16.dp),
             ) {
-                DishesDeleteSection(navController)
+                CategoryDeleteSection(navController)
             }
         }
     }

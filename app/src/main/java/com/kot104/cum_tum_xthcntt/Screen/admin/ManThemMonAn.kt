@@ -1,4 +1,4 @@
-package com.kot104.cum_tum_xthcntt.Screen
+package com.kot104.cum_tum_xthcntt.Screen.admin
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -49,7 +49,6 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import androidx.navigation.NavHostController
 import com.kot104.cum_tum_xthcntt.R
-import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
 import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -1,4 +1,4 @@
-package com.kot104.cum_tum_xthcntt.Screen
+package com.kot104.cum_tum_xthcntt.Screen.admin
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,19 +21,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.kot104.cum_tum_xthcntt.R
-import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
+import com.kot104.cum_tum_xthcntt.compose.DishesDeleteSection
 import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @Composable
-//navController: NavHostController
-fun ManagerCategoriesScreen(navController: NavHostController){
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(0xff252121))) {
+fun DeleteDishesScreen(navController: NavHostController){
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xff252121))
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -42,11 +39,11 @@ fun ManagerCategoriesScreen(navController: NavHostController){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row {
-                IconButton(onClick = { navController.navigateUp() }) {
+                IconButton(onClick = { navController.navigate(Screens.QuanLyMonAn.screen) }) {
                     Icon(imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         tint = Color.White,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(30.dp)
                     )
                 }
                 TopAppBar()
@@ -61,25 +58,9 @@ fun ManagerCategoriesScreen(navController: NavHostController){
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp)
+                    .padding(16.dp),
             ) {
-                CustomButton(
-                    text = "Thêm loại món ăn",
-                    iconId = R.drawable.logo,
-                    onClick =  {navController.navigate(Screens.ThemLoaiMonAn.screen)}
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-                CustomButton(
-                    text = "Sửa loại món ăn",
-                    iconId = R.drawable.logo,
-                    onClick = {navController.navigate(Screens.DanhSachSuaLoaiMonAn.screen)}
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-                CustomButton(
-                    text = "Xoá loại món ăn",
-                    iconId = R.drawable.logo,
-                    onClick = {navController.navigate(Screens.XoaLoaiMonAn.screen)}
-                )
+                DishesDeleteSection(navController)
             }
         }
     }

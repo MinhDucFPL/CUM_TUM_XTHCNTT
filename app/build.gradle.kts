@@ -75,6 +75,10 @@ dependencies {
 
     //icon
     implementation ("androidx.compose.material:material-icons-extended:1.6.7")
+    //date
+    implementation ("com.google.android.material:material:1.4.0")
+    implementation ("androidx.activity:activity-compose:1.4.0")
+
 
     //Anh tu tren mang
     implementation("io.coil-kt:coil-compose:2.1.0")

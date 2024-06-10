@@ -1,4 +1,4 @@
-package com.kot104.cum_tum_xthcntt.Screen
+package com.kot104.cum_tum_xthcntt.Screen.admin
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,20 +21,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.kot104.cum_tum_xthcntt.R
-import com.kot104.cum_tum_xthcntt.ROUTE_SCREEN_NAME
 import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
 @Composable
-fun ManagerDishScreen(navController: NavHostController) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xff252121))
-    ) {
+//navController: NavHostController
+fun ManagerCategoriesScreen(navController: NavHostController){
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color(0xff252121))) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -43,8 +38,7 @@ fun ManagerDishScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row {
-                //navController.navigate("manageCategories")
-                IconButton(onClick = {  navController.navigate("TrangChu")}) {
+                IconButton(onClick = { navController.navigateUp() }) {
                     Icon(imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = "",
                         tint = Color.White,
@@ -66,21 +60,21 @@ fun ManagerDishScreen(navController: NavHostController) {
                     .padding(16.dp)
             ) {
                 CustomButton(
-                    text = "Thêm món ăn",
+                    text = "Thêm loại món ăn",
                     iconId = R.drawable.logo,
-                    onClick = { navController.navigate(Screens.ThemMonAn.screen) }
+                    onClick =  {navController.navigate(Screens.ThemLoaiMonAn.screen)}
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 CustomButton(
-                    text = "Sửa món ăn",
+                    text = "Sửa loại món ăn",
                     iconId = R.drawable.logo,
-                    onClick = { navController.navigate(Screens.DanhSachSuaMonAn.screen) }
+                    onClick = {navController.navigate(Screens.DanhSachSuaLoaiMonAn.screen)}
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 CustomButton(
-                    text = "Xoá món ăn",
+                    text = "Xoá loại món ăn",
                     iconId = R.drawable.logo,
-                    onClick = { navController.navigate(Screens.XoaMonAn.screen) }
+                    onClick = {navController.navigate(Screens.XoaLoaiMonAn.screen)}
                 )
             }
         }
