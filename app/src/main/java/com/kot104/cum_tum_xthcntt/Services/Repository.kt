@@ -92,9 +92,9 @@ class Repository {
         }
     }
 
-    suspend fun suaMonAn(id: String, name: String, price: String, categoryId: String, imageFile: File): MonAn? {
+    suspend fun suaMonAn(id: String, name: String, price: String, categoryId: String, imageFile: File?): MonAn? {
         return try {
-            val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
+            val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile!!)
             val body = MultipartBody.Part.createFormData("hinhAnh", imageFile.name, requestFile)
             val namePart = RequestBody.create("text/plain".toMediaTypeOrNull(), name)
             val pricePart = RequestBody.create("text/plain".toMediaTypeOrNull(), price)

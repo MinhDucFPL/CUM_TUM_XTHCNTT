@@ -45,13 +45,26 @@ fun UpdateCategoryScreen(navController: NavHostController, viewModel: LoaiMonAnV
     var categoryName by remember { mutableStateOf(category.tenLoaiMon) }
     var showDialog by remember { mutableStateOf(false) }
     var dialogMessage by remember { mutableStateOf("") }
+    var trangThai by remember {
+        mutableStateOf(1)
+    }
 
-    if (showDialog) {
-        DialogComponent(
-            onConfirmation = { showDialog = false },
-            dialogTitle = "Thông báo",
-            dialogMessage = dialogMessage
-        )
+    if (trangThai == 1) {
+        if (showDialog) {
+            DialogComponent(
+                onConfirmation = { showDialog = false },
+                dialogTitle = "Thông báo",
+                dialogMessage = dialogMessage
+            )
+        }
+    } else {
+        if (showDialog) {
+            DialogComponent(
+                onConfirmation = { showDialog = false },
+                dialogTitle = "Thông báo",
+                dialogMessage = dialogMessage
+            )
+        }
     }
 
     Box(
@@ -113,12 +126,15 @@ fun UpdateCategoryScreen(navController: NavHostController, viewModel: LoaiMonAnV
                             if (existingCategory == null || existingCategory._id == category._id) {
                                 val updatedCategory = category.copy(tenLoaiMon = newName)
                                 viewModel.suaLoaiMon(category._id!!, updatedCategory)
+                                trangThai = 1
                                 dialogMessage = "Cập nhật tên loại món thành công."
                             } else {
+                                trangThai = 2
                                 dialogMessage = "Tên loại món đã tồn tại."
                             }
                             showDialog = true
                         } else {
+                            trangThai = 3
                             dialogMessage = "Vui lòng nhập tên loại món."
                             showDialog = true
                         }

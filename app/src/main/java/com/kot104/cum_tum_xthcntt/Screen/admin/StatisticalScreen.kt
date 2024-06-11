@@ -193,7 +193,7 @@ fun TopAppBar() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 26.dp),
+            .padding(horizontal = 18.dp),
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {

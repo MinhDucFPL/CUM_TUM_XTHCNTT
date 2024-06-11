@@ -13,11 +13,13 @@ import com.kot104.cum_tum_xthcntt.Screen.admin.DeleteCategoryScreen
 import com.kot104.cum_tum_xthcntt.Screen.admin.LoginScreen
 import com.kot104.cum_tum_xthcntt.Screen.admin.Register
 import com.kot104.cum_tum_xthcntt.Screen.admin.UpdateCategoryScreen
+import com.kot104.cum_tum_xthcntt.Screen.admin.UpdateDishesScreen
 import com.kot104.cum_tum_xthcntt.Screen.admin.WelcomeScreen
 import com.kot104.cum_tum_xthcntt.ViewModel.LoaiMonAnViewModel
 import com.kot104.cum_tum_xthcntt.ViewModel.MonAnViewModel
 //import com.kot104.cum_tum_xthcntt.compose.CategoryDeleteSection
 import com.kot104.cum_tum_xthcntt.compose.CategorySection
+import com.kot104.cum_tum_xthcntt.compose.DishesEditSection
 //import com.kot104.cum_tum_xthcntt.compose.DishesEditSection
 import com.kot104.cum_tum_xthcntt.ui.theme.Screens
 
@@ -42,7 +44,7 @@ enum class ROUTE_SCREEN_NAME {
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    startDestination: String = Screens.ManChao.screen,
+    startDestination: String = Screens.DanhSachSuaMonAn.screen,
     monAnViewModel: MonAnViewModel,
     loaiMonAnViewModel: LoaiMonAnViewModel
 ) {
@@ -66,15 +68,19 @@ fun AppNavHost(
         composable(Screens.ThemMonAn.screen) {
             AddDishesScreen(navController = navController, monAnViewModel, loaiMonAnViewModel)
         }
-//        composable(Screens.SuaMonAn.screen) {
-//            UpdateDishesScreen(navController = navController)
-//        }
+        composable("${Screens.SuaMonAn.screen}/{dishId}") { backStackEntry ->
+            val dishId = backStackEntry.arguments?.getString("dishId")
+            val dish = monAnViewModel.dishes.value?.find { it._id == dishId }
+            dish?.let {
+                UpdateDishesScreen(navController = navController, loaiMonAnViewModel, monAnViewModel, dish = it)
+            }
+        }
 //        composable(Screens.XoaMonAn.screen) {
 //            DeleteDishesScreen(navController = navController)
 //        }
-//        composable(Screens.DanhSachSuaMonAn.screen) {
-//            DishesEditSection(navController = navController)
-//        }
+        composable(Screens.DanhSachSuaMonAn.screen) {
+            DishesEditSection(navController = navController, loaiMonAnViewModel, monAnViewModel)
+        }
         composable(Screens.DanhSachSuaLoaiMonAn.screen) {
             CategorySection(navController = navController, loaiMonAnViewModel)
         }
