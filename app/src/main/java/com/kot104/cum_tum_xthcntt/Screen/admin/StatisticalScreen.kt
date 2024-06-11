@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.kot104.cum_tum_xthcntt.R
+import com.kot104.cum_tum_xthcntt.compose.StatisticalSection
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 @OptIn(ExperimentalMaterial3Api::class)
@@ -185,7 +186,9 @@ fun StatisticalScreen(navController: NavHostController) {
                 .height(4.dp)
                 .fillMaxWidth()
                 .background(Color.Black))
+            StatisticalSection()
         }
+
     }
 }
 @Composable
